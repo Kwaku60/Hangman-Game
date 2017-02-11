@@ -1,0 +1,439 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>HangMan</title>
+	<script src="https://code.jquery.com/jquery-3.1.1.js"></script>
+	<link rel="stylesheet" type="text/css" href="reset.css">
+
+</head>
+<body id="body">
+<h1 id="h1"><center> <br>Hangman<br> </center>
+<div>Press any key to play! </div>
+
+</h1>	
+
+
+
+
+  <br><br><br><br>
+  <div class="correctGuess">
+  <div id="chances"><center> Guesses </center></div>
+  <div id="chancesLive">10</div>
+  <center>
+	  <div class="blocks" id="block1">_</div>
+	  <div class="blocks" id="block2">_</div>
+	  <div class="blocks" id="block3">_</div>
+	  <div class="blocks" id="block4">_</div>
+	  <div class="blocks" id="block5">_</div>
+	  <div class="blocks" id="block6">_</div>
+  </center>
+  </div>
+  <button id="newWord"> NEW WORD</button>
+
+<br><br><br><br>
+<div class="badAnswer">
+</div>
+
+
+
+<style>
+
+.correctGuess { width: 900px;
+				background-color: gold;
+				border: solid white 10px;
+				border-radius: 15px;
+				position: absolute;
+				left: 204px;
+				top: 235px;
+
+
+
+
+}
+
+#chances { width: 80px;
+			height: 20px;
+			background-color: red;
+			position:absolute;
+			left:15px;
+			border: solid red;
+			border-radius: 8px;
+
+
+
+}
+
+#chancesLive { width:19px;
+			   height:20px;
+			   background-color: brown;
+			   position: absolute;
+			   top: 28px;
+			   left: 44px;
+			   border: solid brown;
+			   border-radius: 8px;
+
+
+
+}
+
+
+
+
+.badAnswer	 { width: 900px;
+				height: 250px;
+				background-color: pink;
+				border: solid white 10px;
+				border-radius: 15px;
+				position: absolute;
+				left: 204px;
+				top: 435px;
+				font-size: 60px;
+
+
+
+
+}
+
+
+
+#body {
+
+		background-image: url("http://www.kamloopsthisweek.com/wp-content/uploads/2014/02/IMG_34921-620x330.jpg");
+	
+
+}
+
+
+#newWord {
+
+	position: absolute;
+	left: 1136px;
+	top: 258px;
+}
+
+#block1 {
+
+	float: left;
+	background-color: blue;
+	height: 55px;
+	width: 55px;
+	position: relative;
+	left: 160px;
+
+}
+
+
+
+
+#block2 {
+
+	float: left;
+	background-color: khaki;
+	height: 55px;
+	width: 55px;
+	position: relative;
+	left: 190px;
+}
+
+
+#block3 {
+
+	float: left;
+	background-color: orange;
+	height: 55px;
+	width: 55px;
+	position: relative;
+	left: 220px;
+}
+
+
+#block4 {
+
+	float: left;
+	background-color: khaki;
+	height: 55px;
+	width: 55px;
+	position: relative;
+	left: 250px;
+}
+
+
+#block5 {
+
+	float: left;
+	background-color: orange;
+	height: 55px;
+	width: 55px;
+	position: relative;
+	left: 280px;
+}
+
+
+
+#block6 {
+
+	float: left;
+	background-color: khaki;
+	height: 55px;
+	width: 55px;
+	position: relative;
+	left: 310px;
+}
+
+
+
+
+
+#h1 {  width: 1400px;
+	   height: 200px;
+	   background-image: url("https://encrypted-tbn3.gstatic.com/images?q=tbn:ANd9GcQe91KqyGjWR2eeGivl3mZIAOzkVCFA68w41df79CQLoQUHO3gS");
+
+
+
+}
+
+
+
+</style>
+
+ <script type="text/javascript">
+
+// set up variable
+
+
+
+
+var isNewWord = false;
+
+var isGame1 = true;
+
+var isGame2 = true;
+
+var word = ""
+
+
+ var Guesses = 10;
+
+// function(){
+// if(){
+
+// 	isNewWord= true;
+
+
+
+
+
+$(document).keypress(function(e){
+
+	
+// you need to add an if statement before the switches and define the variable solely within this function. so these particular switches ONLY SWITCH IN A SITUATION WHEN SALOON IS THE WORD!
+	var isCorrect = true;
+	word = "Saloon"
+
+console.log(e.which) 
+
+if(word = "Saloon" && word != "qualms"){
+
+	switch (e.which) {
+		case 97:
+		$("#block2").empty().append("A");
+		isCorrect = false;
+ 
+  		break;
+
+		case 115:
+		$("#block1").empty().append("S");
+		isCorrect = false;
+
+		break;
+
+		case 108:
+		$("#block3").empty().append("L");
+		isCorrect = false;
+
+		break;
+ 
+        case 111:
+	    $("#block4").empty().append("O");
+	    $("#block5").empty().append("O");
+		isCorrect = false;
+
+    	break;
+
+	
+		case 110:
+		$("#block6").empty();
+		$("#block6").append("N");
+		isCorrect = false;
+
+
+
+}};
+
+  
+
+
+   if ((e.which != 97 || 115 || 108 || 111 || 110) && (isCorrect)){
+
+
+
+		Guesses -= 1;
+
+
+
+
+	    // alert(Guesses)
+
+		// $("#chances2").append(Guesses);
+
+
+
+
+		var Letter = String.fromCharCode(e.which);
+
+		$(".badAnswer").append(Letter); 
+
+
+		$("#chancesLive").empty().append(Guesses);
+
+if (Guesses<0) {
+
+
+	$("#chancesLive").empty()
+
+	alert("The word was *Saloon*");
+
+
+
+
+$("#block1, #block2, #block3, #block4, #block5, #block6").empty().append("_");
+
+
+
+
+	
+
+	
+      }  } 
+
+
+
+}) 
+
+// }}
+
+;
+
+
+
+document.getElementById("newWord").addEventListener("click", function newWord(){
+// global scope, outside of large function
+
+
+
+	$(document).keypress(function(e){
+
+		word = "qualms"
+
+		var isCorrect = true;
+
+// console.log(e.which) 
+
+		if(word = "qualms"){
+
+
+		switch (e.which) {
+			case 113:
+			$("#block1").empty().append("Q");
+			isCorrect = false;
+	 
+	  		break;
+
+			case 117:
+			$("#block2").empty().append("U");
+			isCorrect = false;
+
+			break;
+
+			case 97:
+			$("#block3").empty().append("A");
+			isCorrect = false;
+
+			break;
+	 
+	        case 108:
+		    $("#block4").empty().append("L");
+		    isCorrect = false;
+
+		    break;
+
+		    case 109:
+		    $("#block5").empty().append("M");
+			isCorrect = false;
+
+	    	break;
+
+		
+			case 115:
+			$("#block6").empty().append("S");
+			isCorrect = false;
+
+}};
+
+  
+
+
+   if ((e.which != 113 || 117 || 97 || 108 || 109 || 115) && (isCorrect)){
+
+
+
+		Guesses -= 1;
+
+
+
+
+
+
+		var Letter = String.fromCharCode(e.which);
+
+		$(".badAnswer").append(Letter); 
+
+
+		$("#chancesLive").empty().append(Guesses);
+
+if (Guesses<0) {
+
+
+	$("#chancesLive").empty()
+
+	alert("The word was *Qualms*");
+
+
+
+
+$("#block1, #block2, #block3, #block4, #block5, #block6").empty().append("_");
+
+
+
+
+	}
+
+	
+      } 
+
+
+
+
+	});
+
+
+});
+
+
+// try console logging  after each switch to see if the definition of word changes
+</script>
+
+</body>
+</html>
+
